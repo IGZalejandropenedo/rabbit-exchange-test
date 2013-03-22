@@ -3,7 +3,8 @@ var amqp = require('amqp');
 var connection = amqp.createConnection({ host: 'localhost' });
 
 var count = 0;
-var max = 100;
+var max = 10000000;
+var timeout = 1;
 
 // Wait for connection to become established.
 connection.on('ready', function () {
@@ -99,9 +100,9 @@ connection.on('ready', function () {
         var q = Math.floor((Math.random()*8)+1) + '.' + Math.floor((Math.random()*10));
         console.log("Publish RoutingKey", q);
         root.publish(q ,{hello: 'world'});
-        count++;
-        if(count++ <= max)
-          setTimeout(send, 1000);
+        //count++;
+        if(count <= max)
+          setTimeout(send, timeout);
       }
       //send();
       setTimeout(send, 1000);
