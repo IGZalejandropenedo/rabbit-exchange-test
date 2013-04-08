@@ -4,7 +4,7 @@ var connection = amqp.createConnection({ host: 'localhost' });
 
 var count = 0;
 var max = 10000000;
-var timeout = 1;
+var timeout = 1000;
 
 // Wait for connection to become established.
 connection.on('ready', function () {
